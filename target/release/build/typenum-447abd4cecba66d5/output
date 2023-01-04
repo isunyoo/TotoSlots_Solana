@@ -1,0 +1,3 @@
+cargo:rerun-if-changed=build/main.rs
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/syoo/Documents/BlockChain/Solana/TotoSlots_Solana/target/release/build/typenum-447abd4cecba66d5/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/home/syoo/Documents/BlockChain/Solana/TotoSlots_Solana/target/release/build/typenum-447abd4cecba66d5/out/op.rs
