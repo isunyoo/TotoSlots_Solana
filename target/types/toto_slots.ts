@@ -54,8 +54,13 @@ export type TotoSlots = {
           "name": "slots",
           "type": {
             "array": [
-              "u8",
-              6
+              {
+                "array": [
+                  "u8",
+                  6
+                ]
+              },
+              10
             ]
           }
         },
@@ -92,8 +97,13 @@ export type TotoSlots = {
             "name": "slots",
             "type": {
               "array": [
-                "u8",
-                6
+                {
+                  "array": [
+                    "u8",
+                    6
+                  ]
+                },
+                10
               ]
             }
           },
@@ -171,8 +181,13 @@ export const IDL: TotoSlots = {
           "name": "slots",
           "type": {
             "array": [
-              "u8",
-              6
+              {
+                "array": [
+                  "u8",
+                  6
+                ]
+              },
+              10
             ]
           }
         },
@@ -209,8 +224,13 @@ export const IDL: TotoSlots = {
             "name": "slots",
             "type": {
               "array": [
-                "u8",
-                6
+                {
+                  "array": [
+                    "u8",
+                    6
+                  ]
+                },
+                10
               ]
             }
           },

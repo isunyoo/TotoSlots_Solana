@@ -14,12 +14,26 @@ pub struct SlotAccountData {
     pub name: String,
     pub email: String,
     // pub slots_data: Vec<u8>, 
-    pub slots: [u8; 6],
+    // pub slots: [[u8; 6]; 10],
+    pub slots: vec![[u8; 6]],
+    // pub slots: vec![vec![u8; 6]; 2],
     pub time: String,
     pub data_account_address: String,
     pub owner: Pubkey,
 }
 
+https://doc.rust-lang.org/std/vec/struct.Vec.html
+
+// let width = 4;
+// let height = 4;
+// let mut array = vec![vec![0; width]; height];
+
+// array[2][2] = 5;
+// println!("{:?}", array);
+// 0 0 0 0
+// 0 0 0 0
+// 0 0 5 0
+// 0 0 0 0
 
 // struct TotoSlotsData {        
 //     // Declaring different structure elements
