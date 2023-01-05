@@ -9,6 +9,7 @@
    Ak7RMyJRfmRrTkKG4DaMmcxVwVGJgRCsBHThPNK32up
 > anchor build
 > anchor deploy
+> anchor deploy --provider.cluster devnet
 > anchor deploy --provider.cluster https://solana-devnet.g.alchemy.com/v2/<YOUR-API-KEY>
 > solana address -k "target/deploy/toto_slots-keypair.json"
    EgjsT9zhSjfrTMXo3vN5Evp5iSA4RWu6BdKk1oMj3ALm
@@ -35,4 +36,4 @@ $ solana address
 $ solana airdrop 10
 $ solana balance
 $ solana config get
-$ solana config set --url localhost
+$ solana config set --url localhost|devnet
