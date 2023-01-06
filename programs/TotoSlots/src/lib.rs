@@ -20,7 +20,8 @@ pub mod toto_slots {
         acc.uid = String::from("Initialized!");
         acc.name = String::from("Initialized!");
         acc.email = String::from("Initialized!");
-        acc.slots = [[0; 6]; 10];
+        // acc.slots = [[0; 6]; 10];
+        acc.slots.insert(0, [0; 6]);
         acc.time = String::from("Initialized!");
         acc.data_account_address = String::from("Initialized!");
         // Store the public key of the signer to the owner field of SlotAccountData
@@ -30,7 +31,8 @@ pub mod toto_slots {
     }
 
     // pub fn update_slot_data(ctx: Context<UpdateSlotAccountData>, number: u8, message: String) -> ProgramResult {
-    pub fn update_slot_data(ctx: Context<UpdateSlotAccountData>, uid: String, name: String, email: String, slots: [[u8; 6]; 10], time: String, data_account_address: String) -> ProgramResult {
+    // pub fn update_slot_data(ctx: Context<UpdateSlotAccountData>, uid: String, name: String, email: String, slots: [[u8; 6]; 10], time: String, data_account_address: String) -> ProgramResult {
+    pub fn update_slot_data(ctx: Context<UpdateSlotAccountData>, uid: String, name: String, email: String, slots: [[u8; 6]], time: String, data_account_address: String) -> ProgramResult {
 
         let acc = &mut ctx.accounts.slot_account;
         // acc.number = number;
@@ -38,7 +40,8 @@ pub mod toto_slots {
         acc.uid = uid;
         acc.name = name;
         acc.email = email;
-        acc.slots = slots;
+        // acc.slots = slots;
+        acc.slots.insert(0, slots);
         acc.time = time;
         acc.data_account_address = data_account_address;
 
