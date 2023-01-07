@@ -51,6 +51,10 @@
           "type": "string"
         },
         {
+          "name": "time",
+          "type": "string"
+        },
+        {
           "name": "slots",
           "type": {
             "array": [
@@ -60,13 +64,9 @@
                   6
                 ]
               },
-              10
+              1
             ]
           }
-        },
-        {
-          "name": "time",
-          "type": "string"
         },
         {
           "name": "dataAccountAddress",
@@ -94,6 +94,10 @@
             "type": "string"
           },
           {
+            "name": "time",
+            "type": "string"
+          },
+          {
             "name": "slots",
             "type": {
               "array": [
@@ -103,13 +107,9 @@
                     6
                   ]
                 },
-                10
+                1
               ]
             }
-          },
-          {
-            "name": "time",
-            "type": "string"
           },
           {
             "name": "dataAccountAddress",

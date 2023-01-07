@@ -9,7 +9,7 @@
    Ak7RMyJRfmRrTkKG4DaMmcxVwVGJgRCsBHThPNK32up
 > anchor build
 > anchor deploy
-> anchor deploy --provider.cluster devnet
+> anchor deploy --provider.cluster localnet|devnet
  Program path: /home/syoo/Documents/BlockChain/Solana/TotoSlots_Solana/target/deploy/toto_slots.so...
  Program Id: EgjsT9zhSjfrTMXo3vN5Evp5iSA4RWu6BdKk1oMj3ALm
  Deploy success : https://explorer.solana.com/address/EgjsT9zhSjfrTMXo3vN5Evp5iSA4RWu6BdKk1oMj3ALm?cluster=devnet
@@ -19,7 +19,7 @@
 > solana program deploy target/deploy/toto_slots.so
    Program Id: EgjsT9zhSjfrTMXo3vN5Evp5iSA4RWu6BdKk1oMj3ALm
 > yarn add ts-mocha
-> anchor run test
+> anchor run test --provider.cluster localnet|devnet
  My Data Account Address : 2GCR3eAoZ2iHWrRupR6wGtB4fthtnJTfbM1eCD64ZzsY
  https://explorer.solana.com/address/2GCR3eAoZ2iHWrRupR6wGtB4fthtnJTfbM1eCD64ZzsY?cluster=devnet
  Your transaction signature: hkvHcHT4HikzWEwArNdiSPNRLXTqHQUUx7A5bkz22cfeoSPrPvavQuN44uZKi8JFUBHea8CBHvckzB2si1ShwZb
@@ -51,7 +51,7 @@ $ solana airdrop 1 <RECIPIENT_ACCOUNT_ADDRESS> --url https://api.devnet.solana.c
 $ solana transfer <RECIPIENT_ACCOUNT_ADDRESS> 1 -allow-unfunded-recipient
 $ solana balance
 $ solana config get
-$ solana config set --url localhost|devnet
+$ solana config set --url localnet|devnet
 
 
 Deploy a Solana Program[https://docs.solana.com/cli/deploy-a-program]

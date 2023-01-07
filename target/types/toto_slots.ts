@@ -51,6 +51,10 @@ export type TotoSlots = {
           "type": "string"
         },
         {
+          "name": "time",
+          "type": "string"
+        },
+        {
           "name": "slots",
           "type": {
             "array": [
@@ -60,13 +64,9 @@ export type TotoSlots = {
                   6
                 ]
               },
-              10
+              1
             ]
           }
-        },
-        {
-          "name": "time",
-          "type": "string"
         },
         {
           "name": "dataAccountAddress",
@@ -94,6 +94,10 @@ export type TotoSlots = {
             "type": "string"
           },
           {
+            "name": "time",
+            "type": "string"
+          },
+          {
             "name": "slots",
             "type": {
               "array": [
@@ -103,13 +107,9 @@ export type TotoSlots = {
                     6
                   ]
                 },
-                10
+                1
               ]
             }
-          },
-          {
-            "name": "time",
-            "type": "string"
           },
           {
             "name": "dataAccountAddress",
@@ -178,6 +178,10 @@ export const IDL: TotoSlots = {
           "type": "string"
         },
         {
+          "name": "time",
+          "type": "string"
+        },
+        {
           "name": "slots",
           "type": {
             "array": [
@@ -187,13 +191,9 @@ export const IDL: TotoSlots = {
                   6
                 ]
               },
-              10
+              1
             ]
           }
-        },
-        {
-          "name": "time",
-          "type": "string"
         },
         {
           "name": "dataAccountAddress",
@@ -221,6 +221,10 @@ export const IDL: TotoSlots = {
             "type": "string"
           },
           {
+            "name": "time",
+            "type": "string"
+          },
+          {
             "name": "slots",
             "type": {
               "array": [
@@ -230,13 +234,9 @@ export const IDL: TotoSlots = {
                     6
                   ]
                 },
-                10
+                1
               ]
             }
-          },
-          {
-            "name": "time",
-            "type": "string"
           },
           {
             "name": "dataAccountAddress",
