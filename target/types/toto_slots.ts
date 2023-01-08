@@ -51,22 +51,14 @@ export type TotoSlots = {
           "type": "string"
         },
         {
-          "name": "time",
-          "type": "string"
-        },
-        {
           "name": "slots",
           "type": {
-            "array": [
-              {
-                "array": [
-                  "u8",
-                  6
-                ]
-              },
-              1
-            ]
+            "vec": "i32"
           }
+        },
+        {
+          "name": "time",
+          "type": "string"
         },
         {
           "name": "dataAccountAddress",
@@ -94,22 +86,14 @@ export type TotoSlots = {
             "type": "string"
           },
           {
-            "name": "time",
-            "type": "string"
-          },
-          {
             "name": "slots",
             "type": {
-              "array": [
-                {
-                  "array": [
-                    "u8",
-                    6
-                  ]
-                },
-                1
-              ]
+              "vec": "i32"
             }
+          },
+          {
+            "name": "time",
+            "type": "string"
           },
           {
             "name": "dataAccountAddress",
@@ -178,22 +162,14 @@ export const IDL: TotoSlots = {
           "type": "string"
         },
         {
-          "name": "time",
-          "type": "string"
-        },
-        {
           "name": "slots",
           "type": {
-            "array": [
-              {
-                "array": [
-                  "u8",
-                  6
-                ]
-              },
-              1
-            ]
+            "vec": "i32"
           }
+        },
+        {
+          "name": "time",
+          "type": "string"
         },
         {
           "name": "dataAccountAddress",
@@ -221,22 +197,14 @@ export const IDL: TotoSlots = {
             "type": "string"
           },
           {
-            "name": "time",
-            "type": "string"
-          },
-          {
             "name": "slots",
             "type": {
-              "array": [
-                {
-                  "array": [
-                    "u8",
-                    6
-                  ]
-                },
-                1
-              ]
+              "vec": "i32"
             }
+          },
+          {
+            "name": "time",
+            "type": "string"
           },
           {
             "name": "dataAccountAddress",

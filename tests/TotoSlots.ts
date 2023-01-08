@@ -61,11 +61,11 @@ describe("TotoSlots", () => {
     const email = "isunyoo@gmail.com"
     const slots = [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]];
     // slots.insert(0, [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd])
-    // const slots = slots.push(1);
+    // let slots = &mut slots.push(1);
     const time = new Date().toISOString().toString();
     const data_account_address = myDataAccountAddress.toBase58();
     const tx = await program.rpc.updateSlotData(
-      uid, name, email, time, slots, data_account_address, 
+      uid, name, email, slots, time, data_account_address, 
       {
           accounts : {
             slotAccount : myDataAccountAddress,
