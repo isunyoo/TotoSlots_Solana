@@ -4,6 +4,10 @@ version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
+[[bin]]
+name = "totoslots"
+path = "src/main.rs"
+
 [lib]
 crate-type = ["cdylib", "lib"]
 name = "toto_slots"
@@ -20,3 +24,4 @@ overflow-checks = true
 
 [dependencies]
 anchor-lang = "0.24.2"
+

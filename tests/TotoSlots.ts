@@ -59,9 +59,12 @@ describe("TotoSlots", () => {
     const uid = "MpaacJXm6MygMPDnktj"
     const name = "Sunny Yoo"
     const email = "isunyoo@gmail.com"
-    const slots = [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]];
+    // const slots = [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]];
     // slots.insert(0, [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd])
     // let slots = &mut slots.push(1);
+    let v = vec![];
+    v.insert(0, [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]]);
+    const slots = format!("{:?}", &v[0]);
     const time = new Date().toISOString().toString();
     const data_account_address = myDataAccountAddress.toBase58();
     const tx = await program.rpc.updateSlotData(

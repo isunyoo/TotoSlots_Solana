@@ -28,11 +28,16 @@
 > anchor test --skip-local-validator
 > anchor test --provider.cluster https://solana-devnet.g.alchemy.com/v2/<YOUR-API-KEY>
 
+### Python Test ####
 > pyenv shell solana_tools
 > cd tests
 > pip install anchorpy
 > python TotoSlots.py
 
+### Rust Test ###
+> cd programs/TotoSlots/src
+> cat main.rs
+> cargo run
 
 Source Code example
 https://blog.techchee.com/simple-tutorial-on-solana-rust-smart-contract-with-anchor-framework/
