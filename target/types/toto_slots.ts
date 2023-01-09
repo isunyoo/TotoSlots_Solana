@@ -52,9 +52,7 @@ export type TotoSlots = {
         },
         {
           "name": "slots",
-          "type": {
-            "vec": "i32"
-          }
+          "type": "string"
         },
         {
           "name": "time",
@@ -87,9 +85,7 @@ export type TotoSlots = {
           },
           {
             "name": "slots",
-            "type": {
-              "vec": "i32"
-            }
+            "type": "string"
           },
           {
             "name": "time",
@@ -163,9 +159,7 @@ export const IDL: TotoSlots = {
         },
         {
           "name": "slots",
-          "type": {
-            "vec": "i32"
-          }
+          "type": "string"
         },
         {
           "name": "time",
@@ -198,9 +192,7 @@ export const IDL: TotoSlots = {
           },
           {
             "name": "slots",
-            "type": {
-              "vec": "i32"
-            }
+            "type": "string"
           },
           {
             "name": "time",

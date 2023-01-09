@@ -35,8 +35,7 @@
 > python TotoSlots.py
 
 ### Rust Test ###
-> cd programs/TotoSlots/src
-> cat main.rs
+> touch programs/TotoSlots/src/main.rs
 > cargo run
 
 Source Code example

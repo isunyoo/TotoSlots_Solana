@@ -30,7 +30,6 @@ pub mod toto_slots {
         Ok(()) // return the Result
     }
 
-    // pub fn update_slot_data(ctx: Context<UpdateSlotAccountData>, number: u8, message: String) -> ProgramResult {
     // pub fn update_slot_data(ctx: Context<UpdateSlotAccountData>, uid: String, name: String, email: String, slots: [[u8; 6]; 10], time: String, data_account_address: String) -> ProgramResult {
     pub fn update_slot_data(ctx: Context<UpdateSlotAccountData>, uid: String, name: String, email: String, slots: String, time: String, data_account_address: String) -> ProgramResult {
 

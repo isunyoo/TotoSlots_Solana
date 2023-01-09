@@ -34,24 +34,6 @@ describe("TotoSlots", () => {
     printMyData(myDataAccountAddress, program);
   });
 
-  // it('Update MySlotsData!', async () => {
-  //   // generate a random number
-  //   const rnd = Math.floor(Math.random() * 255);
-  //   const message = "Updated number is :" +rnd; 
-
-  //   const tx = await program.rpc.updateSlotData(
-  //     rnd, message, 
-  //     {
-  //         accounts : {
-  //           slotAccount : myDataAccountAddress,
-  //           owner : provider.wallet.publicKey,
-  //         }
-  //     }
-  //   );
-  //   console.log("Your transaction signature:", tx);
-  //   printMyData(myDataAccountAddress, program);
-  // });
-
   it('Update MySlotsData!', async () => {
     // generate a random number
     const rnd = Math.floor(Math.random() * 45);
@@ -60,11 +42,7 @@ describe("TotoSlots", () => {
     const name = "Sunny Yoo"
     const email = "isunyoo@gmail.com"
     // const slots = [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]];
-    // slots.insert(0, [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd])
-    // let slots = &mut slots.push(1);
-    let v = vec![];
-    v.insert(0, [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]]);
-    const slots = format!("{:?}", &v[0]);
+    const slots = "[[1, 2, 3, 4, 5, 6], [1, 3, 6, 9, 12, 14], [2, 4, 6, 8, 10, 12]]";
     const time = new Date().toISOString().toString();
     const data_account_address = myDataAccountAddress.toBase58();
     const tx = await program.rpc.updateSlotData(
@@ -85,11 +63,7 @@ describe("TotoSlots", () => {
 async function printMyData (myDataAccAddress : anchor.web3.PublicKey , program : Program<TotoSlots>){
 
    const myDataAcc = await program.account.slotAccountData.fetch(myDataAccAddress);
-  //  console.log("Data of account:", myDataAccAddress.toBase58());
   //  console.log("Random Number :", myDataAcc.number.toString() );
-  //  console.log("Message :", myDataAcc.message);
-  //  console.log("Owner :", myDataAcc.owner.toBase58());
-
   console.log("UID :", myDataAcc.uid);
   console.log("Name :", myDataAcc.name);
   console.log("Email :", myDataAcc.email);
