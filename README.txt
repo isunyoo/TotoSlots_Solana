@@ -37,6 +37,7 @@
 ### Rust Test ###
 > touch programs/TotoSlots/src/main.rs
 > cargo run
+> cargo test
 
 Source Code example
 https://blog.techchee.com/simple-tutorial-on-solana-rust-smart-contract-with-anchor-framework/
