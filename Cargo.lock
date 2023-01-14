@@ -9,6 +9,7 @@ dependencies = [
  "anchor-lang",
  "async-std",
  "rand 0.8.5",
+ "solana-program",
 ]
 
 [[package]]

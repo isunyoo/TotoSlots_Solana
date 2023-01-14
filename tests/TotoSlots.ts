@@ -35,14 +35,23 @@ describe("TotoSlots", () => {
   });
 
   it('Update MySlotsData!', async () => {
-    // generate a random number
-    const rnd = Math.floor(Math.random() * 45);
-    const message = "Updated number is :" +rnd; 
+    let total_slots_num = 5;
+    let slots_arr = [];
+    for (let i = 0; i < total_slots_num; i++) {
+      // generate a random number
+      const rnd = Math.floor(Math.random() * 45);
+      slots_arr.push([rnd, rnd, rnd, rnd, rnd, rnd]); 
+    }
+    console.log(slots_arr);
+    // // generate a random number
+    // const rnd = Math.floor(Math.random() * 45);
+    // const message = "Updated number is :" +rnd; 
     const uid = "MpaacJXm6MygMPDnktj"
     const name = "Sunny Yoo"
     const email = "isunyoo@gmail.com"
     // const slots = [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]];
-    const slots = "[[1, 2, 3, 4, 5, 6], [1, 3, 6, 9, 12, 14], [2, 4, 6, 8, 10, 12]]";
+    // const slots = "[[1, 2, 3, 4, 5, 6], [1, 3, 6, 9, 12, 14], [2, 4, 6, 8, 10, 12]]";
+    const slots = slots_arr.toString();
     const time = new Date().toISOString().toString();
     const data_account_address = myDataAccountAddress.toBase58();
     const tx = await program.rpc.updateSlotData(

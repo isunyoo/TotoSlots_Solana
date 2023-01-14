@@ -1,4 +1,4 @@
-// // https://github.com/solana-labs/solana-program-library
+// https://github.com/solana-labs/solana-program-library
 
 use std::io;
 use rand::Rng; // rand = "0.8.5" dependencies
@@ -35,6 +35,9 @@ fn main() {
     // println!("{:?}", v[0]);
     let s = format!("{:?}", &v);
     println!("Vector Output Convert to String Object: {}", s);
+
+
+    let _u = solana_program::pubkey!("Et2tm6NsfBZJbEYXtWTv9k51V4tWtQvufexSgXoDRGVA");
 
     // // #### Functions ####
     // println!("{}", print_data(3));
@@ -94,39 +97,22 @@ fn main() {
 
 
 use anchor_lang::solana_program::{
-    account_info::{next_account_info, AccountInfo},
-    clock,
+    account_info::AccountInfo,
+    entrypoint,
     entrypoint::ProgramResult,
-    msg,
     pubkey::Pubkey,
-    sysvar::Sysvar,
+    msg,
 };
 
-fn process_instruction(
+entrypoint!(process_instruction);
+
+pub fn process_instruction(
     program_id: &Pubkey,
     accounts: &[AccountInfo],
-    instruction_data: &[u8],
+    instruction_data: &[u8]
 ) -> ProgramResult {
-    let account_info_iter = &mut accounts.iter();
-    let clock_account = next_account_info(account_info_iter)?;
-    let clock = clock::Clock::from_account_info(&clock_account)?;
-    msg!("clock: {:#?}", clock);
+
+    msg!("Hello, world!");
+
     Ok(())
 }
-
-it("Is initialized!", async () => {
-    // Add your test here.
-    // const tx = await program.methods.initialize().rpc();
-    const tx = await program.rpc.initSlotAccount(
-      {
-          accounts : {
-            slotAccount : myDataAccountAddress,
-            owner : provider.wallet.publicKey,
-            systemProgram : anchor.web3.SystemProgram.programId,
-          },
-          signers : [myDataAccountSigner],
-      }
-    );
-    console.log("Your transaction signature", tx);
-    printMyData(myDataAccountAddress, program);
-  });

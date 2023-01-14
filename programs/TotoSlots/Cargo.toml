@@ -26,4 +26,5 @@ overflow-checks = true
 async-std = {version = "1.12.0", features = ["attributes"]}
 anchor-lang = "0.24.2"
 rand = "0.8"
+solana-program = "*"
 
