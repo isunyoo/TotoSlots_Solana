@@ -34,11 +34,6 @@
 > pip install anchorpy
 > python TotoSlots.py
 
-### Rust Test ###
-> touch programs/TotoSlots/src/main.rs
-> cargo run
-> cargo test
-
 Source Code example
 https://blog.techchee.com/simple-tutorial-on-solana-rust-smart-contract-with-anchor-framework/
 https://github.com/ketyung/my_sol_data
@@ -48,8 +43,7 @@ https://github.com/ketyung/my_sol_data
 $ solana-keygen new
 $ solana address
 $ solana address -k ~/.config/solana/id.json
-Newly generated public and private keys to be stored in a specific file:
-$ solana-keygen new --outfile ~/solana/my_wallet.json 
+$ solana-keygen new --outfile ~/solana/my_wallet.json  // Newly generated public and private keys to be stored in a specific file
 $ solana-keygen pubkey ~/.config/solana/id.json
 $ solana airdrop 10
 $ solana airdrop 1 <RECIPIENT_ACCOUNT_ADDRESS> --url https://api.devnet.solana.com

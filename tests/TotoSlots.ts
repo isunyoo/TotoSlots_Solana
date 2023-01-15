@@ -36,21 +36,26 @@ describe("TotoSlots", () => {
 
   it('Update MySlotsData!', async () => {
     let total_slots_num = 5;
-    let slots_arr = [];
+    let slots_arr: string[] = [];
     for (let i = 0; i < total_slots_num; i++) {
-      // generate a random number
-      const rnd = Math.floor(Math.random() * 45);
-      slots_arr.push([rnd, rnd, rnd, rnd, rnd, rnd]); 
+      // generate an unique random number[1~45]
+      var slot = [];
+      while(slot.length < 6) {
+        var r = Math.floor(Math.random() * 45) + 1;
+        if(slot.indexOf(r) === -1) slot.push(r);
+      }
+      // console.log(slot);
+      // sort the array using a function
+      slot.sort(function(a, b){
+        // return b - a; // sort in descending order
+        return a - b; // sort in ascending order
+      })
+      slots_arr.push('['+slot+']');   
     }
-    console.log(slots_arr);
-    // // generate a random number
-    // const rnd = Math.floor(Math.random() * 45);
-    // const message = "Updated number is :" +rnd; 
+    // console.log(slots_arr);
     const uid = "MpaacJXm6MygMPDnktj"
     const name = "Sunny Yoo"
     const email = "isunyoo@gmail.com"
-    // const slots = [[rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd], [rnd, rnd, rnd, rnd, rnd, rnd]];
-    // const slots = "[[1, 2, 3, 4, 5, 6], [1, 3, 6, 9, 12, 14], [2, 4, 6, 8, 10, 12]]";
     const slots = slots_arr.toString();
     const time = new Date().toISOString().toString();
     const data_account_address = myDataAccountAddress.toBase58();
@@ -72,7 +77,6 @@ describe("TotoSlots", () => {
 async function printMyData (myDataAccAddress : anchor.web3.PublicKey , program : Program<TotoSlots>){
 
    const myDataAcc = await program.account.slotAccountData.fetch(myDataAccAddress);
-  //  console.log("Random Number :", myDataAcc.number.toString() );
   console.log("UID :", myDataAcc.uid);
   console.log("Name :", myDataAcc.name);
   console.log("Email :", myDataAcc.email);

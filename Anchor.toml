@@ -12,7 +12,7 @@ toto_slots = "EgjsT9zhSjfrTMXo3vN5Evp5iSA4RWu6BdKk1oMj3ALm"
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "/Users/syoo/.config/solana/id.json"
 
 [scripts]

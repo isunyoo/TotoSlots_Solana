@@ -4,10 +4,6 @@ version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
-[[bin]]
-name = "totoslots"
-path = "src/main.rs"
-
 [lib]
 crate-type = ["cdylib", "lib"]
 name = "toto_slots"
@@ -23,8 +19,6 @@ default = []
 overflow-checks = true
 
 [dependencies]
-async-std = {version = "1.12.0", features = ["attributes"]}
 anchor-lang = "0.24.2"
-rand = "0.8"
-solana-program = "*"
+
 
