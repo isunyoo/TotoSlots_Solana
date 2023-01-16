@@ -4,9 +4,6 @@ import { TotoSlots } from "../target/types/toto_slots";
 
 describe("TotoSlots", () => {
   // Configure the client to use the local cluster.
-  // let provider = anchor.setProvider(anchor.AnchorProvider.env());
-  // let provider = anchor.Provider.env();
-  // anchor.setProvider(provider);
   const provider =  anchor.AnchorProvider.env();
   anchor.setProvider(provider);
 
@@ -75,8 +72,7 @@ describe("TotoSlots", () => {
 });
 
 async function printMyData (myDataAccAddress : anchor.web3.PublicKey , program : Program<TotoSlots>){
-
-   const myDataAcc = await program.account.slotAccountData.fetch(myDataAccAddress);
+  const myDataAcc = await program.account.slotAccountData.fetch(myDataAccAddress);
   console.log("UID :", myDataAcc.uid);
   console.log("Name :", myDataAcc.name);
   console.log("Email :", myDataAcc.email);
