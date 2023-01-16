@@ -27,6 +27,8 @@
 > anchor run custom-script-test
 > anchor test --skip-local-validator
 > anchor test --provider.cluster https://solana-devnet.g.alchemy.com/v2/<YOUR-API-KEY>
+> npm install @solana/web3.js
+> node app.js
 
 ### Python Test ####
 > pyenv shell solana_tools
@@ -37,7 +39,6 @@
 Source Code example
 https://blog.techchee.com/simple-tutorial-on-solana-rust-smart-contract-with-anchor-framework/
 https://github.com/ketyung/my_sol_data
-
 
 
 $ solana-keygen new
