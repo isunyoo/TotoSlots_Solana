@@ -27,8 +27,19 @@
 > anchor run custom-script-test
 > anchor test --skip-local-validator
 > anchor test --provider.cluster https://solana-devnet.g.alchemy.com/v2/<YOUR-API-KEY>
-> npm install @solana/web3.js
-> node app.js
+
+
+### Writing the react frontend ###
+Solana Wallet Adapter
+1. git clone https://github.com/solana-labs/wallet-adapter
+2. Navigate to wallet-adapter/packages/starter/create-react-app-starter 
+3. Copy the generated idl.json from anchor project to the frontend project
+ > cp -v target/idl/toto_slots.json wallet-adapter/packages/starter/create-react-app-starter/src/idl.json
+4. npm install (cd wallet-adapter/packages/starter/create-react-app-starter)
+5. npm start
+6. Start implementation!
+ > cat wallet-adapter/packages/starter/create-react-app-starter/src/App.tsx
+
 
 ### Python Test ####
 > pyenv shell solana_tools
