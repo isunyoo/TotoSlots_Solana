@@ -58,6 +58,7 @@ $ solana address -k ~/.config/solana/id.json
 $ solana-keygen new --outfile ~/solana/my_wallet.json  // Newly generated public and private keys to be stored in a specific file
 $ solana-keygen pubkey ~/.config/solana/id.json
 $ solana airdrop 10
+$ solana --url devnet airdrop 1 Biip5kBdDVpEMKA6ss9kz3qUpgjzY3Qd55W5rBZNcWsp
 $ solana airdrop 1 <RECIPIENT_ACCOUNT_ADDRESS> --url https://api.devnet.solana.com
 $ solana transfer <RECIPIENT_ACCOUNT_ADDRESS> 1 -allow-unfunded-recipient
 $ solana balance
