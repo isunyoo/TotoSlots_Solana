@@ -88,26 +88,27 @@ const Content: FC = () => {
         const program = new Program(b, idl.metadata.address, provider);
         // console.log('Program: ', program)
         try{
-        //     // interact with the program via rpc
-        //     await program.rpc.initSlotAccount({
-        //         accounts: {
-        //             slotAccount: baseAccount.publicKey,
-        //             owner: provider.wallet.publicKey,
-        //             systemProgram: web3.SystemProgram.programId,
-        //         },
-        //         signers: [baseAccount]
-        //     });
-        //     const account = await program.account.myAccount.fetch(baseAccount.publicKey);
-        //     console.log('account: ', account);
+            // interact with the program via rpc
+            await program.rpc.initSlotAccount({
+                accounts: {
+                    slotAccount: baseAccount.publicKey,
+                    owner: provider.wallet.publicKey,
+                    systemProgram: web3.SystemProgram.programId,
+                },
+                signers: [baseAccount]
+            });
+            // console.log('Owner PublicKey: ', provider.wallet.publicKey.toBase58());
+            const account = await program.account.slotAccount.fetch(baseAccount.publicKey);
+            console.log('Account: ', account);
 
-            const transaction = new web3.Transaction().add(
-                web3.SystemProgram.transfer({
-                fromPubkey: baseAccount.publicKey,
-                toPubkey: provider.wallet.publicKey,
-                lamports: web3.LAMPORTS_PER_SOL / 100,
-                })
-            );
-            console.log(await solana.simulateTransaction(transaction, [baseAccount]));
+        // const transaction = new web3.Transaction().add(
+        //     web3.SystemProgram.transfer({
+        //     fromPubkey: baseAccount.publicKey,
+        //     toPubkey: provider.wallet.publicKey,
+        //     lamports: web3.LAMPORTS_PER_SOL / 100,
+        //     })
+        // );
+        // console.log(await solana.simulateTransaction(transaction, [baseAccount]));
 
         } catch (err) {
             console.log("Transaction error: ", err);
