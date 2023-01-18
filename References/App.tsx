@@ -73,7 +73,7 @@ const Content: FC = () => {
         return provider;
     }
 
-    async function createCounter() {
+    async function initSlotAccount() {
         const provider = getProvider()
         if (!provider) {
             // eslint-disable-next-line
@@ -89,17 +89,24 @@ const Content: FC = () => {
         // console.log('Program: ', program)
         try{
             // interact with the program via rpc
-            await program.rpc.initSlotAccount({
-                accounts: {
-                    slotAccount: baseAccount.publicKey,
-                    owner: provider.wallet.publicKey,
-                    systemProgram: web3.SystemProgram.programId,
-                },
-                signers: [baseAccount]
-            });
+            // await program.rpc.initSlotAccount({
+            //     accounts: {
+            //         slotAccount: baseAccount.publicKey,
+            //         owner: provider.wallet.publicKey,
+            //         systemProgram: web3.SystemProgram.programId,
+            //     },
+            //     signers: [baseAccount]
+            // });
+            let tx = await program.methods.initSlotAccount().accounts({
+                slotAccount: baseAccount.publicKey,
+                owner: provider.wallet.publicKey,
+                systemProgram: web3.SystemProgram.programId,
+                }).signers([baseAccount]).rpc();
+            console.log('Tx: ', tx);
+        
             // console.log('Owner PublicKey: ', provider.wallet.publicKey.toBase58());
-            const account = await program.account.slotAccount.fetch(baseAccount.publicKey);
-            console.log('Account: ', account);
+            // const account = await program.account.slotAccount.fetch(baseAccount.publicKey);
+            // console.log('Account: ', account);
 
         // const transaction = new web3.Transaction().add(
         //     web3.SystemProgram.transfer({
@@ -135,7 +142,7 @@ const Content: FC = () => {
 
     return (
         <div className="App">
-            <button onClick={createCounter}>Initialize</button>
+            <button onClick={initSlotAccount}>InitializeSlots</button>
             <WalletMultiButton />
         </div>
     );
