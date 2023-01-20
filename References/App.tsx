@@ -13,6 +13,8 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 const App: FC = () => {
     return (
         <Context>
+            <center><h1>How many games to generate?</h1></center>
+            <center><input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/></center>
             <Content />
         </Context>
     );
@@ -102,11 +104,11 @@ const Content: FC = () => {
                 owner: provider.wallet.publicKey,
                 systemProgram: web3.SystemProgram.programId,
                 }).signers([baseAccount]).rpc();
-            console.log('Tx: ', tx);
+            console.log('InitializedTx: ', tx);
         
             // console.log('Owner PublicKey: ', provider.wallet.publicKey.toBase58());
-            // const account = await program.account.slotAccount.fetch(baseAccount.publicKey);
-            // console.log('Account: ', account);
+            const data = await program.account.slotAccountData.fetch(baseAccount.publicKey);
+            console.log('InitSlotData: ', data);
 
         // const transaction = new web3.Transaction().add(
         //     web3.SystemProgram.transfer({
@@ -120,29 +122,89 @@ const Content: FC = () => {
         } catch (err) {
             console.log("Transaction error: ", err);
         }
+    }
 
-        // const web3 = require("@solana/web3.js");
-        // (async () => {
-        // const solana = new web3.Connection("http://127.0.0.1:8899");
-        // // Replace with your public/secret keypair, wallet must have funds to pay transaction fees.
-        // const fromWallet = web3.Keypair.generate();
-        // const toWallet = web3.Keypair.generate();
+    async function updateSlotAccount() {
+        const provider = getProvider()
+        if (!provider) {
+            // eslint-disable-next-line
+            throw("Provider is null");
+        }
 
-        // const transaction = new web3.Transaction().add(
-        //     web3.SystemProgram.transfer({
-        //     fromPubkey: fromWallet.publicKey,
-        //     toPubkey: toWallet.publicKey,
-        //     lamports: web3.LAMPORTS_PER_SOL / 100,
-        //     })
-        // );
-        // console.log(await solana.simulateTransaction(transaction, [fromWallet]));
-        // })();
+        // BUFFER IS DEFINED IN REACT-REACTJS
+        window.Buffer = window.Buffer || require("buffer").Buffer;
 
+        // create the program interface combining the idl, program ID and provider
+        // Bug with default importing when handling string value types, fix by pre-con
+        const a = JSON.stringify(idl);
+        const b = JSON.parse(a);
+        // const program = new Program(contractJson, programID, provider);
+        const program = new Program(b, idl.metadata.address, provider);
+        // console.log('Program: ', program)
+
+
+        // Generate Random Slots
+        let total_slots_num = 5;
+        let input_num = document.getElementById('slotnums');
+        console.log("Input Number: ", input_num);
+        let slots_arr: string[] = [];
+        for (let i = 0; i < total_slots_num; i++) {
+          // generate an unique random number[1~45]
+          var slot = [];
+          while(slot.length < 6) {
+            var r = Math.floor(Math.random() * 45) + 1;
+            if(slot.indexOf(r) === -1) slot.push(r);
+          }
+          // console.log(slot);
+          // sort the array using a function
+          slot.sort(function(a, b){
+            // return b - a; // sort in descending order
+            return a - b; // sort in ascending order
+          })
+          slots_arr.push('['+slot+']');   
+        }
+
+
+        const uid = "MpaacJXm6MygMPDnktj"
+        const name = "Sunny Yoo"
+        const email = "isunyoo@gmail.com"
+        const slots = slots_arr.toString();
+        const time = new Date().toISOString().toString();
+        const data_account_address =  provider.wallet.publicKey.toBase58();
+        try{
+            // interact with the program via rpc
+            // Initialize Slot Account
+            // await program.methods.initSlotAccount().accounts({
+            //     slotAccount: baseAccount.publicKey,
+            //     owner: provider.wallet.publicKey,
+            //     systemProgram: web3.SystemProgram.programId,
+            //     }).signers([baseAccount]).rpc();
+
+            // let tx = await program.rpc.updateSlotData(uid, name, email, slots, time, data_account_address, {
+            //     accounts: {
+            //         slotAccount: baseAccount.publicKey,
+            //         owner: provider.wallet.publicKey,
+            //     },
+            // });
+            let tx = await program.methods.updateSlotData(uid, name, email, slots, time, data_account_address).accounts({
+                slotAccount: baseAccount.publicKey,
+                owner: provider.wallet.publicKey,
+                }).rpc();
+            console.log('UpdatedTx: ', tx);
+        
+            // console.log('Owner PublicKey: ', provider.wallet.publicKey.toBase58());
+            const data = await program.account.slotAccountData.fetch(baseAccount.publicKey);
+            console.log('UpdatedSlotData: ', data);
+
+        } catch (err) {
+            console.log("Transaction error: ", err);
+        }
     }
 
     return (
         <div className="App">
             <button onClick={initSlotAccount}>InitializeSlots</button>
+            <button onClick={updateSlotAccount}>UpdateSlots</button>
             <WalletMultiButton />
         </div>
     );
