@@ -3,6 +3,7 @@ import { ConnectionProvider, WalletProvider, useAnchorWallet } from '@solana/wal
 import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl, Connection } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo } from 'react';
+import ReactDOM from "react-dom/client";
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { Program, AnchorProvider, web3, BN } from '@project-serum/anchor';
 import idl from './idl.json';
@@ -13,8 +14,13 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 const App: FC = () => {
     return (
         <Context>
-            <center><h1>How many games to generate?</h1></center>
-            <center><input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/></center>
+            {/* <center><h1>How many games to generate?</h1></center>
+            <center>
+            <form  className="form-horizontal">
+                <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/>
+            </form>
+            <button type="button" className="btn">Save</button>
+            </center> */}
             <Content />
         </Context>
     );
@@ -47,7 +53,7 @@ const Context: FC<{ children: ReactNode }> = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [network]
     );
-
+    
     return (
         <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets={wallets} autoConnect>
@@ -145,8 +151,13 @@ const Content: FC = () => {
 
         // Generate Random Slots
         let total_slots_num = 5;
-        let input_num = document.getElementById('slotnums');
-        console.log("Input Number: ", input_num);
+        const input_num = document.getElementById('slotnums') as HTMLInputElement | null;
+        // const input_num = document.getElementById("slotnums").value.trim();
+        // let val1d = parseInt(input_num);
+        console.log("Input Number: ", input_num?.value);
+        // if (input_num != null) {
+        //     console.log(input_num.value); // 👉️ "Initial Value"
+        //   }
         let slots_arr: string[] = [];
         for (let i = 0; i < total_slots_num; i++) {
           // generate an unique random number[1~45]
@@ -163,8 +174,6 @@ const Content: FC = () => {
           })
           slots_arr.push('['+slot+']');   
         }
-
-
         const uid = "MpaacJXm6MygMPDnktj"
         const name = "Sunny Yoo"
         const email = "isunyoo@gmail.com"
@@ -196,16 +205,50 @@ const Content: FC = () => {
             const data = await program.account.slotAccountData.fetch(baseAccount.publicKey);
             console.log('UpdatedSlotData: ', data);
 
+            // ReactDOM Parsing HTML Display from Output
+            // In TypeScript, React to take control of that element
+            const element = document.getElementById("root");
+            const root = ReactDOM.createRoot(element!);
+            const App = () => {
+                return (
+                    <React.StrictMode>
+                        <div>
+                            <h1>UpdatedSlotData</h1>
+                            <h1>TX: <>{tx}</></h1>
+                            <h1>UID: <>{data.uid}</></h1>
+                            <h1>NAME: <>{data.name}</></h1>
+                            <h1>EMAIL: <>{data.email}</></h1>
+                            <h1>SLOTS: <>{data.slots}</></h1>
+                            <h1>TIME: <>{data.time}</></h1>
+                            <h1>ADDRESS: <>{provider.wallet.publicKey.toBase58()}</></h1>
+                            <h1><a href=".">Main</a></h1>
+                        </div>
+                    </React.StrictMode>
+                );
+            };
+            root.render(<App />);
         } catch (err) {
             console.log("Transaction error: ", err);
         }
     }
 
     return (
-        <div className="App">
-            <button onClick={initSlotAccount}>InitializeSlots</button>
-            <button onClick={updateSlotAccount}>UpdateSlots</button>
-            <WalletMultiButton />
+        <div className="App" id="root">
+            <Context>
+                <center>
+                    <h1>How many games to generate?</h1>
+                    {/* <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/> */}
+                </center>
+                {/* <input id="message" type="text" name="message" value="Initial Value" /> */}
+                <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/>
+                {/* <form className="slotInputForm">
+                    <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/>
+                </form> */}
+                {/* <button type="button" className="btn">Save</button> */}
+                <button onClick={initSlotAccount}>InitializeSlots</button>
+                <button onClick={updateSlotAccount}>UpdateSlots</button>
+                <WalletMultiButton />
+            </Context>
         </div>
     );
 };
