@@ -14,13 +14,7 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 const App: FC = () => {
     return (
         <Context>
-            {/* <center><h1>How many games to generate?</h1></center>
-            <center>
-            <form  className="form-horizontal">
-                <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/>
-            </form>
-            <button type="button" className="btn">Save</button>
-            </center> */}
+            <center><h1>Lotto Slots Machine</h1></center>
             <Content />
         </Context>
     );
@@ -150,29 +144,28 @@ const Content: FC = () => {
 
 
         // Generate Random Slots
-        let total_slots_num = 5;
         const input_num = document.getElementById('slotnums') as HTMLInputElement | null;
-        // const input_num = document.getElementById("slotnums").value.trim();
-        // let val1d = parseInt(input_num);
-        console.log("Input Number: ", input_num?.value);
-        // if (input_num != null) {
-        //     console.log(input_num.value); // 👉️ "Initial Value"
-        //   }
+        // console.log("Input Number as string: ", input_num?.value);
+        // console.log("Input Number Type: ", typeof input_num?.valueAsNumber);
+        // let val1d = Number(input_num?.valueAsNumber);
+        // console.log("Input Number as number: ", val1d);
         let slots_arr: string[] = [];
-        for (let i = 0; i < total_slots_num; i++) {
-          // generate an unique random number[1~45]
-          var slot = [];
-          while(slot.length < 6) {
-            var r = Math.floor(Math.random() * 45) + 1;
-            if(slot.indexOf(r) === -1) slot.push(r);
-          }
-          // console.log(slot);
-          // sort the array using a function
-          slot.sort(function(a, b){
-            // return b - a; // sort in descending order
-            return a - b; // sort in ascending order
-          })
-          slots_arr.push('['+slot+']');   
+        if (input_num != null) {
+            for (let i = 0; i < Number(input_num?.valueAsNumber); i++) {
+            // generate an unique random number[1~45]
+            var slot = [];
+            while(slot.length < 6) {
+                var r = Math.floor(Math.random() * 45) + 1;
+                if(slot.indexOf(r) === -1) slot.push(r);
+            }
+            // console.log(slot);
+            // sort the array using a function
+            slot.sort(function(a, b){
+                // return b - a; // sort in descending order
+                return a - b; // sort in ascending order
+            })
+            slots_arr.push('['+slot+']');   
+            }
         }
         const uid = "MpaacJXm6MygMPDnktj"
         const name = "Sunny Yoo"
@@ -195,38 +188,40 @@ const Content: FC = () => {
             //         owner: provider.wallet.publicKey,
             //     },
             // });
-            let tx = await program.methods.updateSlotData(uid, name, email, slots, time, data_account_address).accounts({
-                slotAccount: baseAccount.publicKey,
-                owner: provider.wallet.publicKey,
-                }).rpc();
-            console.log('UpdatedTx: ', tx);
-        
-            // console.log('Owner PublicKey: ', provider.wallet.publicKey.toBase58());
-            const data = await program.account.slotAccountData.fetch(baseAccount.publicKey);
-            console.log('UpdatedSlotData: ', data);
-
-            // ReactDOM Parsing HTML Display from Output
-            // In TypeScript, React to take control of that element
-            const element = document.getElementById("root");
-            const root = ReactDOM.createRoot(element!);
-            const App = () => {
-                return (
-                    <React.StrictMode>
-                        <div>
-                            <h1>UpdatedSlotData</h1>
-                            <h1>TX: <>{tx}</></h1>
-                            <h1>UID: <>{data.uid}</></h1>
-                            <h1>NAME: <>{data.name}</></h1>
-                            <h1>EMAIL: <>{data.email}</></h1>
-                            <h1>SLOTS: <>{data.slots}</></h1>
-                            <h1>TIME: <>{data.time}</></h1>
-                            <h1>ADDRESS: <>{provider.wallet.publicKey.toBase58()}</></h1>
-                            <h1><a href=".">Main</a></h1>
-                        </div>
-                    </React.StrictMode>
-                );
-            };
-            root.render(<App />);
+            if(slots.length != 0){
+                let tx = await program.methods.updateSlotData(uid, name, email, slots, time, data_account_address).accounts({
+                    slotAccount: baseAccount.publicKey,
+                    owner: provider.wallet.publicKey,
+                    }).rpc();
+                console.log('UpdatedTx: ', tx);
+            
+                // console.log('Owner PublicKey: ', provider.wallet.publicKey.toBase58());
+                const data = await program.account.slotAccountData.fetch(baseAccount.publicKey);
+                console.log('UpdatedSlotData: ', data);
+            
+                // ReactDOM Parsing HTML Display from Output
+                // In TypeScript, React to take control of that element
+                const element = document.getElementById("root");
+                const root = ReactDOM.createRoot(element!);
+                const App = () => {
+                    return (
+                        <React.StrictMode>
+                            <div>
+                                <h1>UpdatedSlotData</h1>
+                                <h1>TX: <>{tx}</></h1>
+                                <h1>UID: <>{data.uid}</></h1>
+                                <h1>NAME: <>{data.name}</></h1>
+                                <h1>EMAIL: <>{data.email}</></h1>
+                                <h1>SLOTS: <>{data.slots}</></h1>
+                                <h1>TIME: <>{data.time}</></h1>
+                                <h1>ADDRESS: <>{provider.wallet.publicKey.toBase58()}</></h1>
+                                <h1><a href=".">Main</a></h1>
+                            </div>
+                        </React.StrictMode>
+                    );
+                };
+                root.render(<App />);
+            }
         } catch (err) {
             console.log("Transaction error: ", err);
         }
@@ -237,14 +232,8 @@ const Content: FC = () => {
             <Context>
                 <center>
                     <h1>How many games to generate?</h1>
-                    {/* <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/> */}
                 </center>
-                {/* <input id="message" type="text" name="message" value="Initial Value" /> */}
-                <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/>
-                {/* <form className="slotInputForm">
-                    <input type="number" min="0" name="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/>
-                </form> */}
-                {/* <button type="button" className="btn">Save</button> */}
+                <input type="number" min="1" id="slotnums" placeholder="Number of slots" onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}/>
                 <button onClick={initSlotAccount}>InitializeSlots</button>
                 <button onClick={updateSlotAccount}>UpdateSlots</button>
                 <WalletMultiButton />
